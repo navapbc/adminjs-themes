@@ -7,12 +7,38 @@ import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import virtual from '@rollup/plugin-virtual';
 
-import { external, globals } from 'adminjs/bundler';
 import fs from 'fs';
 import kebabCase from 'lodash/kebabCase.js';
 import path from 'path';
 import { rollup } from 'rollup';
 import util from 'util';
+const external =
+[
+  'prop-types',
+  'react',
+  'react-dom',
+  'redux',
+  'react-redux',
+  'react-router',
+  'react-router-dom',
+  '@adminjs/design-system/styled-components',
+  'adminjs',
+  '@adminjs/design-system',
+  'react-feather'
+];
+const globals = {
+  react: 'React',
+  redux: 'Redux',
+  'react-feather': 'FeatherIcons',
+  '@adminjs/design-system/styled-components': 'styled',
+  'prop-types': 'PropTypes',
+  'react-dom': 'ReactDOM',
+  'react-redux': 'ReactRedux',
+  'react-router': 'ReactRouter',
+  'react-router-dom': 'ReactRouterDOM',
+  adminjs: 'AdminJS',
+  '@adminjs/design-system': 'AdminJSDesignSystem'
+};
 
 const readdir = util.promisify(fs.readdir);
 const writeFile = util.promisify(fs.writeFile);
